@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Time Countdown</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="label_countdown_age">请输入你的倒计时年龄</string>
+    <string name="label_your_birth">你的生日</string>
+    <string name="label_current_target">你当前三个目标</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="hint_target">请输入你的目标</string>
+    <string name="message_delete_failed">删除失败，请重试</string>
+    <string name="message_confirm_delete">确定要删除该目标吗？</string>
+    <string name="message_too_many_targets">已经有很多目标拉，先完成一些再说吧</string>
+    <string name="message_not_empty">啥都不写也叫目标？难道有什么禅意在里面？</string>
+    <string name="label_slogan">你妈喊你起床工作！</string>
+    <string name="label_countdown_hint">距离 %1$s 岁还有 %2$s 天</string>
+</resources>
