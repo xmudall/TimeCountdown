@@ -1,6 +1,5 @@
 package com.xmudall.timecountdown;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -15,11 +14,11 @@ import android.view.View;
 public class NoticeDialogFragment extends DialogFragment {
 
     public interface NoticeDialogListener {
-        void onDialogPositiveClick(DialogFragment dialog);
+        void onClick(DialogFragment dialog);
     }
 
     // Use this instance of the interface to deliver action events
-    NoticeDialogListener mListener;
+    NoticeDialogListener mPosListener, mNegListener;
 
     private int messageResourceId;
     private View customView;
@@ -29,8 +28,13 @@ public class NoticeDialogFragment extends DialogFragment {
         return this;
     }
 
-    public NoticeDialogFragment withListener(NoticeDialogListener listener) {
-        this.mListener = listener;
+    public NoticeDialogFragment withPositiveListener(NoticeDialogListener listener) {
+        this.mPosListener = listener;
+        return this;
+    }
+
+    public NoticeDialogFragment withNegativeListener(NoticeDialogListener listener) {
+        this.mNegListener = listener;
         return this;
     }
 
@@ -52,14 +56,17 @@ public class NoticeDialogFragment extends DialogFragment {
         builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // Send the positive button event back to the host activity
-                if (mListener != null) {
-                    mListener.onDialogPositiveClick(NoticeDialogFragment.this);
+                if (mPosListener != null) {
+                    mPosListener.onClick(NoticeDialogFragment.this);
                 }
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // Send the negative button event back to the host activity
+                if (mNegListener != null) {
+                    mNegListener.onClick(NoticeDialogFragment.this);
+                }
             }
         });
         return builder.create();

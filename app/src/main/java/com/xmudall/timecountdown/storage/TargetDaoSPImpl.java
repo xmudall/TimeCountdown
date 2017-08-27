@@ -18,11 +18,9 @@ public class TargetDaoSPImpl implements TargetDao {
     private static final String SP_TARGET = "target";
     private static final String KEY_TARGET = "target";
     private static final String TAG = TargetDaoSPImpl.class.getName();
-    private Context context;
     private SharedPreferences sp;
 
     public TargetDaoSPImpl(Context context) {
-        this.context = context;
         this.sp = context.getSharedPreferences(SP_TARGET, Context.MODE_PRIVATE);
     }
 
@@ -67,7 +65,7 @@ public class TargetDaoSPImpl implements TargetDao {
         for (Iterator<Target> it = targets.iterator(); it.hasNext(); ) {
             Target old = it.next();
             if (old.getId() == id) {
-                old.setContent(target.getContent());
+                old.setValue(target);
                 SharedPreferences.Editor editor = sp.edit();
                 editor.putString(KEY_TARGET, JSON.toJSONString(targets));
                 editor.commit();

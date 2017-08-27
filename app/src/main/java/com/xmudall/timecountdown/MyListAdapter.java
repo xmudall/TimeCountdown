@@ -71,8 +71,9 @@ public class MyListAdapter extends BaseAdapter {
 
         // fill data
         ViewHolder holder = (ViewHolder) convertView.getTag();
-        String content = data.get(position).getContent();
-        holder.checkBox.setText(content);
+        Target target = data.get(position);
+        holder.checkBox.setText(target.getContent());
+        holder.checkBox.setChecked(target.isFinished());
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

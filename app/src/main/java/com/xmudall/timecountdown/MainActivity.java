@@ -96,7 +96,13 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void setCountDownHint() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setCountDownHint();
+    }
+
+    void setCountDownHint() {
         // set countdown hint
         Map<String, String> setting = settingDao.load();
         if (setting.containsKey("age") && setting.containsKey("birth")) {
@@ -120,7 +126,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private List<Target> loadData() {
+    List<Target> loadData() {
         List<Target> targets = targetDao.getAll();
         return targets;
     }
@@ -158,7 +164,7 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private void showSetting() {
+    void showSetting() {
         View view = getLayoutInflater().inflate(R.layout.dialog_setting, null);
 
         Map<String, String> setting = settingDao.load();
@@ -168,9 +174,9 @@ public class MainActivity extends AppCompatActivity
         editTextBirth.setText(setting.get("birth"));
         NoticeDialogFragment dialogFragment = new NoticeDialogFragment()
                 .withCustomView(view)
-                .withListener(new NoticeDialogFragment.NoticeDialogListener() {
+                .withPositiveListener(new NoticeDialogFragment.NoticeDialogListener() {
                     @Override
-                    public void onDialogPositiveClick(DialogFragment dialog) {
+                    public void onClick(DialogFragment dialog) {
                         String age = editTextAge.getText().toString();
                         String birth = editTextBirth.getText().toString();
                         Map<String, String> setting = new HashMap<>();
@@ -228,16 +234,22 @@ public class MainActivity extends AppCompatActivity
         Log.d(TAG, "item clicked " + position);
         DialogFragment alertFragment = new NoticeDialogFragment()
                 .withMessageResourceId(R.string.message_confirm_delete)
-                .withListener(new NoticeDialogFragment.NoticeDialogListener() {
+                .withPositiveListener(new NoticeDialogFragment.NoticeDialogListener() {
                     @Override
-                    public void onDialogPositiveClick(DialogFragment dialog) {
+                    public void onClick(DialogFragment dialog) {
                         deleteTarget(position);
+                    }
+                })
+                .withNegativeListener(new NoticeDialogFragment.NoticeDialogListener() {
+                    @Override
+                    public void onClick(DialogFragment dialog) {
+                        listAdapter.notifyDataSetChanged();
                     }
                 });
         alertFragment.show(getFragmentManager(), "deleteTarget");
     }
 
-    public void deleteTarget(int position) {
+    void deleteTarget(int position) {
         Target target = listAdapter.getData().get(position);
         if (targetDao.delete(target.getId())) {
             listAdapter.getData().remove(position);
@@ -246,4 +258,5 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(this, R.string.message_delete_failed, Toast.LENGTH_SHORT).show();
         }
     }
+
 }
