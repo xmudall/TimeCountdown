@@ -16,5 +16,7 @@
     <string name="message_too_many_targets">已经有很多目标拉，先完成一些再说吧</string>
     <string name="message_not_empty">啥都不写也叫目标？难道有什么禅意在里面？</string>
     <string name="label_slogan">你妈喊你起床工作！</string>
-    <string name="label_countdown_hint">距离 %1$s 岁还有 %2$s 天</string>
+    <string name="label_countdown_hint">距离 <b>%1$s</b> 岁还有 <b>%2$s</b> 天</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>
