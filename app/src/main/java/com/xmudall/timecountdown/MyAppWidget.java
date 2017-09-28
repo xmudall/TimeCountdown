@@ -1,5 +1,6 @@
 package com.xmudall.timecountdown;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
@@ -70,7 +71,10 @@ public class MyAppWidget extends AppWidgetProvider {
 //        intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
 
         // Construct the RemoteViews object
+        Intent intent = new Intent(context, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.my_app_widget);
+        views.setOnClickPendingIntent(R.id.widget, pendingIntent);
 //        views.setRemoteAdapter(appWidgetId, intent);
         views.setTextViewText(R.id.label_countdown_hint, hint);
         views.setTextViewText(R.id.targets, sb.toString());

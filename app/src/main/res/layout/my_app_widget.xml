@@ -1,7 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/widget"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#09C"
+                android:background="#fbf7ba"
                 android:padding="@dimen/widget_margin">
 
     <TextView
