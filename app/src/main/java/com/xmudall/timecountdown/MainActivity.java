@@ -156,10 +156,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            showSetting();
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            showSetting();
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -195,17 +195,11 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
+        if (id == R.id.nav_done) {
 
         } else if (id == R.id.nav_manage) {
-
+            showSetting();
         } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         }
 
